@@ -1,4 +1,4 @@
-package datastructures.Shared;
+package datastructures.shared;
 
 public class Node {
     private int value;

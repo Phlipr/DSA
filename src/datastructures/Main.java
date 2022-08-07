@@ -1,12 +1,77 @@
 package datastructures;
 
-import datastructures.LinkedLists.DoublyLinkedList;
-import datastructures.LinkedLists.LinkedList;
+import datastructures.linkedlists.DoublyLinkedList;
+import datastructures.linkedlists.LinkedList;
+import datastructures.stacks.Stack;
 
 public class Main {
     public static void main(String... args) {
-        //testLinkedList();
-        //testDoublyLinkedList();
+        testLinkedList();
+        testDoublyLinkedList();
+        testStack();
+    }
+
+    public static void testStack() {
+        System.out.println();
+        System.out.println("Testing Stack class:");
+        System.out.println();
+
+        System.out.println("Creating Stack class with initial top value of 1...");
+        Stack stack1 = new Stack(1);
+
+        System.out.println();
+        stack1.printStack();
+
+        System.out.println();
+        System.out.println("Testing push method:");
+        System.out.println();
+
+        System.out.println("Pushing 2, 3, 4, and 5 to stack...");
+        System.out.println();
+
+        stack1.push(2);
+        stack1.push(3);
+        stack1.push(4);
+        stack1.push(5);
+
+        stack1.printStack();
+
+        System.out.println();
+        System.out.println("Testing pop method:");
+        System.out.println();
+
+        System.out.println("Popping 5, 4, 3, 2, and 1...");
+        System.out.println();
+
+        System.out.println("Removing node with value of " + stack1.pop().getValue());
+        System.out.println("New list:");
+        stack1.printStack();
+        System.out.println();
+
+        System.out.println("Removing node with value of " + stack1.pop().getValue());
+        System.out.println("New list:");
+        stack1.printStack();
+        System.out.println();
+
+        System.out.println("Removing node with value of " + stack1.pop().getValue());
+        System.out.println("New list:");
+        stack1.printStack();
+        System.out.println();
+
+        System.out.println("Removing node with value of " + stack1.pop().getValue());
+        System.out.println("New list:");
+        stack1.printStack();
+        System.out.println();
+
+        System.out.println("Removing node with value of " + stack1.pop().getValue());
+        System.out.println("New list:");
+        stack1.printStack();
+        System.out.println();
+
+        System.out.println("Removing node with value of " + stack1.pop());
+        System.out.println("New list:");
+        stack1.printStack();
+        System.out.println();
     }
 
     public static void testDoublyLinkedList() {

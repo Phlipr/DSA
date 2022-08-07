@@ -1,162 +1,173 @@
-package datastructures.LinkedLists;
+package datastructures.linkedlists;
 
-import datastructures.Shared.Node;
+import datastructures.shared.Node;
 
-public class LinkedList {
+public class DoublyLinkedList {
     private Node head;
     private Node tail;
     private int length;
 
-    public LinkedList(int value) {
+    public DoublyLinkedList(int value) {
         Node newNode = new Node(value);
-
         this.head = newNode;
         this.tail = newNode;
-        this.length++;
+        length++;
     }
 
     public void append(int value) {
         Node newNode = new Node(value);
 
-        if (this.head == null) { // LinkedList is currently empty
+        if (this.head == null) {
             this.head = newNode;
         } else {
             this.tail.next = newNode;
+            newNode.prev = this.tail;
         }
         this.tail = newNode;
+
         this.length++;
     }
 
     public Node removeLast() {
-        // LinkedList is empty
         if (this.head == null) {
             return null;
         }
 
-        Node temp = this.head;
-        Node pre = this.head;
-        while (temp.next != null) {
-            pre = temp;
-            temp = temp.next;
-        }
-        pre.next = null;
-        this.tail = pre;
-        this.length--;
-        if (this.length == 0) {
+        Node temp = this.tail;
+        if (this.head == this.tail) {
             this.head = null;
             this.tail = null;
+        } else {
+            this.tail = temp.prev;
+            temp.prev = null;
+            temp.next = null;
+            this.tail.next = null;
         }
-
+        this.length--;
         return temp;
     }
 
-    public void prePend(int value) {
+    public void prepend(int value) {
         Node newNode = new Node(value);
 
-        // LinkedList is empty
         if (this.head == null) {
             this.head = newNode;
             this.tail = newNode;
         } else {
-            newNode.next = head;
+            this.head.prev = newNode;
+            newNode.next = this.head;
             this.head = newNode;
         }
         this.length++;
     }
 
     public Node removeFirst() {
-        if (this.head == null) { // LinkedList is empty
+        if (this.head == null) {
             return null;
         }
 
         Node temp = this.head;
-        this.head = this.head.next;
-        temp.next = null;
-        this.length--;
-        if (length == 0) {
+
+        if (this.head == this.tail) {
+            this.head = null;
             this.tail = null;
+        } else {
+            this.head = temp.next;
+            head.prev = null;
+            temp.next = null;
         }
+        length--;
         return temp;
     }
 
     public Node get(int index) {
-        if (this.head == null) { // LinkedList is empty
+        if (index < 0 || index > this.length - 1) {
             return null;
-        }
-
-        if (index < 0 || index >= this.length) { // index beyond LinkedList index boundaries
-            return null;
-        }
-
-        Node temp = this.head;
-        for (int i = 0; i < index; i++) {
-            temp = temp.next;
-        }
-        return temp;
-    }
-
-    public boolean insert(int index, int value) {
-        if (index < 0 || index > this.length) {
-            return false;
         }
 
         if (index == 0) {
-            this.prePend(value);
-        } else if (index == this.length) {
-            this.append(value);
-        } else {
-            Node newNode = new Node(value);
-            Node temp = this.get(index - 1);
-            newNode.next = temp.next;
-            temp.next = newNode;
-            length++;
+            return this.head;
         }
 
-        return true;
+        if (index == this.length - 1) {
+            return this.tail;
+        }
+
+        Node temp;
+
+        if (index < (this.length / 2)) {
+            temp = this.head;
+            for (int i = 0; i < index; i++) {
+                temp = temp.next;
+            }
+        } else {
+            temp = this.tail;
+            for (int i = this.length - 1; i > index; i--) {
+                temp = temp.prev;
+            }
+        }
+        return temp;
     }
 
     public boolean set(int index, int value) {
         Node temp = this.get(index);
 
-        if (temp != null) {
-            temp.setValue(value);
+        if (temp == null) {
+            return false;
+        }
+
+        temp.setValue(value);
+
+        return true;
+    }
+
+    public boolean insert(int index, int value) {
+        if (index == 0) {
+            this.prepend(value);
             return true;
         }
 
-        return false;
+        if (index == this.length) {
+            this.append(value);
+            return true;
+        }
+
+        Node temp = this.get(index);
+
+        if (temp != null) {
+            Node newNode = new Node(value);
+            newNode.next = temp;
+            newNode.prev = temp.prev;
+            temp.prev.next = newNode;
+            temp.prev = newNode;
+            length++;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Node remove(int index) {
-        if (index < 0 || index >= this.length) {
+        if (index == 0) {
+            return this.removeFirst();
+        }
+
+        if (index == this.length - 1) {
+            return this.removeLast();
+        }
+
+        Node temp = this.get(index);
+
+        if (temp == null) {
             return null;
         }
 
-        if (index == 0) {
-            return this.removeFirst();
-        } else if (index == this.length - 1) {
-            return this.removeLast();
-        } else {
-            Node pre = this.get(index - 1);
-            Node temp = pre.next;
-            pre.next = temp.next;
-            temp.next = null;
-            this.length--;
-            return temp;
-        }
-    }
-
-    public void reverse() {
-        Node temp = this.head;
-        this.head = this.tail;
-        this.tail = temp;
-        Node before = null;
-        Node after;
-        for (int i = 0; i < this.length; i++) {
-            after = temp.next;
-            temp.next = before;
-            before = temp;
-            temp = after;
-        }
+        temp.prev.next = temp.next;
+        temp.next.prev = temp.prev;
+        temp.next = null;
+        temp.prev = null;
+        length--;
+        return temp;
     }
 
     public void printLinkedList() {
