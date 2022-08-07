@@ -2,6 +2,7 @@ package datastructures;
 
 import datastructures.linkedlists.DoublyLinkedList;
 import datastructures.linkedlists.LinkedList;
+import datastructures.queues.Queue;
 import datastructures.stacks.Stack;
 
 public class Main {
@@ -9,6 +10,67 @@ public class Main {
         testLinkedList();
         testDoublyLinkedList();
         testStack();
+        testQueue();
+    }
+
+    public static void testQueue() {
+        System.out.println();
+        System.out.println("Testing Queue class:");
+        System.out.println();
+
+        System.out.println("Creating queue with initial value of 1...");
+        System.out.println();
+
+        Queue queue1 = new Queue(1);
+        queue1.printQueue();
+
+        System.out.println();
+        System.out.println("Testing enqueue method:");
+        System.out.println();
+
+        System.out.println("Enqueuing node with a value of 2...");
+        queue1.enqueue(2);
+        System.out.println();
+
+        queue1.printQueue();
+
+        System.out.println();
+        System.out.println("Testing dequeue method:");
+        System.out.println();
+
+        System.out.println("Dequeuing first node...");
+        System.out.println("Removing node with value of " + queue1.dequeue().getValue());
+        System.out.println();
+
+        System.out.println("New List:");
+        queue1.printQueue();
+        System.out.println();
+
+        System.out.println("Dequeuing first node...");
+        System.out.println("Removing node with value of " + queue1.dequeue().getValue());
+        System.out.println();
+
+        System.out.println("New List:");
+        queue1.printQueue();
+        System.out.println();
+
+        System.out.println("Dequeuing first node...");
+        System.out.println("Removing node with value of " + queue1.dequeue());
+        System.out.println();
+
+        System.out.println("New List:");
+        queue1.printQueue();
+        System.out.println();
+
+        System.out.println("Testing enqueue method on empty list:");
+        System.out.println();
+
+        System.out.println("Enqueuing node with value of 1 on empty list...");
+        queue1.enqueue(1);
+
+        System.out.println();
+        System.out.println("New List:");
+        queue1.printQueue();
     }
 
     public static void testStack() {
