@@ -230,6 +230,31 @@ public class Main {
         System.out.println();
 
         System.out.println("The BST " + (myBST.contains(9) ? "contains" : "does not contain") + " the value of 9.");
+        System.out.println();
+
+        System.out.println("Testing DFS methods on full tree:");
+        System.out.println();
+
+        myBST.printTree();
+
+        System.out.println();
+        System.out.println("preOrderDFS = " + myBST.preOrderDFS().toString());
+        System.out.println("postOrderDFS = " + myBST.postOrderDFS().toString());
+        System.out.println("inOrderDFS = " + myBST.inOrderDFS().toString());
+        System.out.println();
+
+        System.out.println("Testing DFS methods on empty tree:");
+        System.out.println();
+
+        myBST = new BST();
+
+        myBST.printTree();
+
+        System.out.println();
+        System.out.println("preOrderDFS = " + myBST.preOrderDFS().toString());
+        System.out.println("postOrderDFS = " + myBST.postOrderDFS().toString());
+        System.out.println("inOrderDFS = " + myBST.inOrderDFS().toString());
+        System.out.println();
     }
 
     public static void testQueue() {

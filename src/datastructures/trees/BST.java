@@ -1,5 +1,6 @@
 package datastructures.trees;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -139,5 +140,68 @@ public class BST {
             }
         }
         return ret;
+    }
+
+    public ArrayList<Integer> preOrderDFS() {
+        ArrayList<Integer> results = new ArrayList<>();
+
+        class Traverse {
+            public Traverse(TreeNode currNode) {
+                results.add(currNode.value);
+                if (currNode.left != null) {
+                    new Traverse(currNode.left);
+                }
+                if (currNode.right != null) {
+                    new Traverse(currNode.right);
+                }
+            }
+        }
+
+        if (this.root != null) {
+            new Traverse(this.root);
+        }
+        return results;
+    }
+
+    public ArrayList<Integer> postOrderDFS() {
+        ArrayList<Integer> results = new ArrayList<>();
+
+        class Traverse {
+            public Traverse(TreeNode currNode) {
+                if (currNode.left != null) {
+                    new Traverse(currNode.left);
+                }
+                if (currNode.right != null) {
+                    new Traverse(currNode.right);
+                }
+                results.add(currNode.value);
+            }
+        }
+
+        if (this.root != null) {
+            new Traverse(this.root);
+        }
+        return results;
+    }
+
+    public ArrayList<Integer> inOrderDFS() {
+        ArrayList<Integer> results = new ArrayList<>();
+
+        class Traverse {
+            public Traverse(TreeNode currNode) {
+                if (currNode.left != null) {
+                    new Traverse(currNode.left);
+                }
+                results.add(currNode.value);
+                if (currNode.right != null) {
+                    new Traverse(currNode.right);
+                }
+            }
+        }
+
+        if (this.root != null) {
+            new Traverse(this.root);
+        }
+        return results;
     }
 }
