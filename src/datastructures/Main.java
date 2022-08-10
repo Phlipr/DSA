@@ -1,20 +1,127 @@
 package datastructures;
 
+import datastructures.graphs.Graph;
+import datastructures.hashtables.HashTable;
 import datastructures.linkedlists.DoublyLinkedList;
 import datastructures.linkedlists.LinkedList;
 import datastructures.queues.Queue;
 import datastructures.stacks.Stack;
 import datastructures.trees.BST;
-import datastructures.hashtables.HashTable;
 
 public class Main {
     public static void main(String... args) {
-//        testLinkedList();
-//        testDoublyLinkedList();
-//        testStack();
-//        testQueue();
-//        testBST();
+        testLinkedList();
+        testDoublyLinkedList();
+        testStack();
+        testQueue();
+        testBST();
         testHashTable();
+        testGraph();
+    }
+
+    public static void testGraph() {
+        System.out.println();
+        System.out.println("Testing the Graph Class:");
+        System.out.println();
+
+        System.out.println("Creating graph...");
+        Graph myGraph = new Graph();
+
+        System.out.println();
+        myGraph.printGraph();
+        System.out.println();
+
+        System.out.println("Testing 'addVertex' method:");
+        System.out.println();
+
+        System.out.println("Adding vertex 'A' to the graph...");
+        System.out.println();
+
+        myGraph.addVertex("A");
+        myGraph.printGraph();
+        System.out.println();
+
+        System.out.println("Testing 'addEdge' method:");
+        System.out.println();
+
+        System.out.println("Attempting to add edge between existing vertex 'A' and nonexistent vertex 'B'");
+        System.out.println();
+
+        System.out.println("This edge " + (myGraph.addEdge("A", "B") ? "can" : "cannot") + " be added to the graph.");
+        System.out.println();
+
+        System.out.println("Graph is now:");
+        myGraph.printGraph();
+        System.out.println();
+
+        System.out.println("Adding vertex 'B' to graph...");
+        System.out.println();
+        System.out.println("Vertex 'B' " + (myGraph.addVertex("B") ? "was" : "was not") + " added to the graph.");
+        System.out.println();
+
+        System.out.println("Attempting to add edge between existing vertex 'A' and now existing vertex 'B'");
+        System.out.println();
+
+        System.out.println("This edge " + (myGraph.addEdge("A", "B") ? "can" : "cannot") + " be added to the graph.");
+        System.out.println();
+
+        System.out.println("Graph is now:");
+        myGraph.printGraph();
+        System.out.println();
+
+        System.out.println("Testing 'removeEdge' method:");
+        System.out.println();
+
+        System.out.println("Attempting to remove edge between existing vertex 'A' and nonexistent vertex 'C'");
+        System.out.println();
+
+        System.out.println("This edge " + (myGraph.removeEdge("A", "C") ? "can" : "cannot") + " be removed from the graph.");
+        System.out.println();
+
+        System.out.println("Graph is now:");
+        myGraph.printGraph();
+        System.out.println();
+
+        System.out.println("Attempting to remove edge between existing vertex 'A' and existing vertex 'B'");
+        System.out.println();
+
+        System.out.println("This edge " + (myGraph.removeEdge("A", "B") ? "can" : "cannot") + " be removed from the graph.");
+        System.out.println();
+
+        System.out.println("Graph is now:");
+        myGraph.printGraph();
+        System.out.println();
+
+        System.out.println("Testing 'removeVertex' method:");
+        System.out.println();
+
+        System.out.println("Trying to remove nonexistent vertex 'D' from the graph:");
+        System.out.println();
+
+        System.out.println("Vertex 'D' " + (myGraph.removeVertex("D") ? "can" : "cannot") + " be removed from the graph.");
+        System.out.println();
+
+        System.out.println("Creating graph with vertices 'A', 'B', 'C', and  'D' with 'A', 'B', and 'C' connected by an edge and 'D' connect to all other vertices.");
+        System.out.println();
+
+        myGraph.addVertex("C");
+        myGraph.addVertex("D");
+        myGraph.addEdge("A", "B");
+        myGraph.addEdge("B", "C");
+        myGraph.addEdge("A", "C");
+        myGraph.addEdge("D", "A");
+        myGraph.addEdge("D", "B");
+        myGraph.addEdge("D", "C");
+        myGraph.printGraph();
+        System.out.println();
+
+        System.out.println("Attempting to remove vertex 'D' from this graph:");
+        System.out.println();
+
+        System.out.println("Vertex 'D' " + (myGraph.removeVertex("D") ? "can" : "cannot") + " be removed from the graph.");
+        System.out.println();
+
+        myGraph.printGraph();
     }
 
     public static void testHashTable() {
@@ -150,7 +257,7 @@ public class Main {
         System.out.println("Testing dequeue method:");
         System.out.println();
 
-        System.out.println("Dequeuing first node...");
+        System.out.println("De-queuing first node...");
         System.out.println("Removing node with value of " + queue1.dequeue().getValue());
         System.out.println();
 
@@ -158,7 +265,7 @@ public class Main {
         queue1.printQueue();
         System.out.println();
 
-        System.out.println("Dequeuing first node...");
+        System.out.println("De-queuing first node...");
         System.out.println("Removing node with value of " + queue1.dequeue().getValue());
         System.out.println();
 
@@ -166,7 +273,7 @@ public class Main {
         queue1.printQueue();
         System.out.println();
 
-        System.out.println("Dequeuing first node...");
+        System.out.println("De-queuing first node...");
         System.out.println("Removing node with value of " + queue1.dequeue());
         System.out.println();
 
@@ -301,7 +408,7 @@ public class Main {
         System.out.println("Removing last node from the list...");
         System.out.println();
 
-        System.out.printf("Node removed had value of: %d%n", doublyLinkedList1.removeLast());
+        System.out.println("Node removed had value of: " + doublyLinkedList1.removeLast());
         System.out.println("New list is:");
         doublyLinkedList1.printLinkedList();
 
@@ -354,7 +461,7 @@ public class Main {
         System.out.println("Removing first node from the list...");
         System.out.println();
 
-        System.out.printf("Node removed had value of: %d%n", doublyLinkedList1.removeFirst());
+        System.out.println("Node removed had value of: " + doublyLinkedList1.removeFirst());
         System.out.println("New list is:");
         doublyLinkedList1.printLinkedList();
 
@@ -393,13 +500,13 @@ public class Main {
         System.out.println("Getting node at index -1...");
         System.out.println();
 
-        System.out.printf("Node value at index -1 = %d%n", doublyLinkedList1.get(-1));
+        System.out.println("Node value at index -1 = " + doublyLinkedList1.get(-1));
 
         System.out.println();
         System.out.println("Getting node at index 5...");
         System.out.println();
 
-        System.out.printf("Node value at index 5 = %d%n", doublyLinkedList1.get(5));
+        System.out.println("Node value at index 5 = " + doublyLinkedList1.get(5));
 
         System.out.println();
         System.out.println("Setting node at index 2 to 10...");
@@ -537,7 +644,7 @@ public class Main {
 
         System.out.println();
 
-        System.out.printf("Removed node with value = %d%n", linkedList1.removeLast());
+        System.out.println("Removed node with value = " + linkedList1.removeLast());
 
         linkedList1.printLinkedList();
 
@@ -587,7 +694,7 @@ public class Main {
 
         System.out.println();
 
-        System.out.printf("Removed node value = %d%n", linkedList1.removeFirst());
+        System.out.println("Removed node value = " + linkedList1.removeFirst());
 
         linkedList1.printLinkedList();
 
@@ -627,11 +734,11 @@ public class Main {
 
         System.out.println();
 
-        System.out.printf("The node value at index -1 is %d%n", linkedList1.get(-1));
+        System.out.println("The node value at index -1 is " + linkedList1.get(-1));
 
         System.out.println();
 
-        System.out.printf("The node value at index 5 is %d%n", linkedList1.get(5));
+        System.out.println("The node value at index 5 is " + linkedList1.get(5));
 
         System.out.println();
 
@@ -687,11 +794,11 @@ public class Main {
 
         System.out.println();
 
-        System.out.printf("Removing node at -1 returns %d%n", linkedList1.remove(-1));
+        System.out.println("Removing node at -1 returns " + linkedList1.remove(-1));
 
         System.out.println();
 
-        System.out.printf("Removing node at -12 returns %d%n", linkedList1.remove(12));
+        System.out.println("Removing node at -12 returns " + linkedList1.remove(12));
 
         System.out.println();
 
