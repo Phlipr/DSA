@@ -4,13 +4,125 @@ import datastructures.linkedlists.DoublyLinkedList;
 import datastructures.linkedlists.LinkedList;
 import datastructures.queues.Queue;
 import datastructures.stacks.Stack;
+import datastructures.trees.BST;
+import datastructures.hashtables.HashTable;
 
 public class Main {
     public static void main(String... args) {
-        testLinkedList();
-        testDoublyLinkedList();
-        testStack();
-        testQueue();
+//        testLinkedList();
+//        testDoublyLinkedList();
+//        testStack();
+//        testQueue();
+//        testBST();
+        testHashTable();
+    }
+
+    public static void testHashTable() {
+        System.out.println();
+        System.out.println("Testing HashTable Class:");
+        System.out.println();
+
+        System.out.println("Creating HashTable:");
+        System.out.println();
+
+        HashTable myHashTable = new HashTable();
+
+        myHashTable.printHashTable();
+
+        System.out.println();
+        System.out.println("Adding items to HashTable using 'set' method:");
+        System.out.println();
+
+        String[] keys = {"bolts", "nails", "screws", "lumber", "hammers", "tape", "triangle", "gloves"};
+        int[] values = {200, 300, 400, 500, 600, 100, 250, 350};
+
+        for (int i = 0; i < keys.length; i++) {
+            System.out.println("Adding item {'" + keys[i] + "': " + values[i] + "}");
+            myHashTable.set(keys[i], values[i]);
+        }
+
+        System.out.println();
+        myHashTable.printHashTable();
+        System.out.println();
+
+        System.out.println("Getting items from HashTable using 'get' method:");
+        System.out.println();
+
+        String[] getKeys = {"bolts", "screws", "gloves", "lumber", "nails", "apples", "bananas"};
+
+        for (String key : getKeys) {
+            System.out.println("Value for " + key + ": " + myHashTable.get(key));
+        }
+
+        System.out.println();
+        System.out.println("Getting keys from HashTable using 'keys' method:");
+        System.out.println();
+
+        System.out.println("Keys in myHashTable: " + myHashTable.keys().toString());
+    }
+
+    public static void testBST() {
+        System.out.println();
+        System.out.println("Testing BST Class:");
+        System.out.println();
+
+        System.out.println("Creating BST and testing insert to root...");
+        System.out.println();
+
+        BST myBST = new BST();
+        myBST.printTree();
+
+        System.out.println("Inserting node with value of 24:");
+        myBST.insert(24);
+        myBST.printTree();
+        System.out.println();
+
+        System.out.println("Inserting node with value of 12:");
+        System.out.println();
+        myBST.insert(12);
+        myBST.printTree();
+        System.out.println();
+
+        System.out.println("Inserting node with value of 32:");
+        System.out.println();
+        myBST.insert(32);
+        myBST.printTree();
+        System.out.println();
+
+        System.out.println("Inserting node with value of 17:");
+        System.out.println();
+        myBST.insert(17);
+        myBST.printTree();
+        System.out.println();
+
+        System.out.println("Inserting node with value of 17:");
+        System.out.println();
+        myBST.insert(17);
+        myBST.printTree();
+        System.out.println();
+
+        System.out.println("Inserting node with value of 18:");
+        System.out.println();
+        myBST.insert(18);
+        myBST.printTree();
+        System.out.println();
+
+        System.out.println("Inserting node with value of 9:");
+        System.out.println();
+        myBST.insert(9);
+        myBST.printTree();
+        System.out.println();
+
+        System.out.println("Inserting node with value of 99:");
+        System.out.println();
+        myBST.insert(99);
+        myBST.printTree();
+        System.out.println();
+
+        System.out.println("Testing contains method:");
+        System.out.println();
+
+        System.out.println("The BST " + (myBST.contains(9) ? "contains" : "does not contain") + " the value of 9.");
     }
 
     public static void testQueue() {
